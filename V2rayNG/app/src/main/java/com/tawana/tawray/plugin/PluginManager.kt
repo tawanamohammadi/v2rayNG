@@ -33,7 +33,7 @@ import android.net.Uri
 import android.os.Build
 import android.system.Os
 import androidx.core.os.bundleOf
-import com.tawana.tawray.AngApplication
+import com.tawana.tawray.TawRayApplication
 import com.tawana.tawray.extension.listenForPackageChanges
 import com.tawana.tawray.extension.toast
 import com.tawana.tawray.plugin.PluginContract.METADATA_KEY_ID
@@ -47,7 +47,7 @@ object PluginManager {
     private var receiver: BroadcastReceiver? = null
     private var cachedPlugins: PluginList? = null
     fun fetchPlugins() = synchronized(this) {
-        if (receiver == null) receiver = AngApplication.application.listenForPackageChanges {
+        if (receiver == null) receiver = TawRayApplication.application.listenForPackageChanges {
             synchronized(this) {
                 receiver = null
                 cachedPlugins = null
@@ -88,30 +88,30 @@ object PluginManager {
             flags =
                 flags or PackageManager.MATCH_DIRECT_BOOT_UNAWARE or PackageManager.MATCH_DIRECT_BOOT_AWARE
         }
-        var providers = AngApplication.application.packageManager.queryIntentContentProviders(
+        var providers = TawRayApplication.application.packageManager.queryIntentContentProviders(
             Intent(PluginContract.ACTION_NATIVE_PLUGIN, buildUri(pluginId, "com.github.dyhkwong.AngApplication")), flags
         )
             .filter { it.providerInfo.exported }
         if (providers.isEmpty()) {
-            providers = AngApplication.application.packageManager.queryIntentContentProviders(
+            providers = TawRayApplication.application.packageManager.queryIntentContentProviders(
                 Intent(PluginContract.ACTION_NATIVE_PLUGIN, buildUri(pluginId, "io.nekohasekai.AngApplication")), flags
             )
                 .filter { it.providerInfo.exported }
         }
         if (providers.isEmpty()) {
-            providers = AngApplication.application.packageManager.queryIntentContentProviders(
+            providers = TawRayApplication.application.packageManager.queryIntentContentProviders(
                 Intent(PluginContract.ACTION_NATIVE_PLUGIN, buildUri(pluginId, "moe.matsuri.lite")), flags
             )
                 .filter { it.providerInfo.exported }
         }
         if (providers.isEmpty()) {
-            providers = AngApplication.application.packageManager.queryIntentContentProviders(
+            providers = TawRayApplication.application.packageManager.queryIntentContentProviders(
                 Intent(PluginContract.ACTION_NATIVE_PLUGIN, buildUri(pluginId, "fr.husi")), flags
             )
                 .filter { it.providerInfo.exported }
         }
         if (providers.isEmpty()) {
-            providers = AngApplication.application.packageManager.queryIntentContentProviders(
+            providers = TawRayApplication.application.packageManager.queryIntentContentProviders(
                 Intent(PluginContract.ACTION_NATIVE_PLUGIN), PackageManager.GET_META_DATA
             ).filter {
                 it.providerInfo.exported &&
@@ -126,7 +126,7 @@ object PluginManager {
         if (providers.size > 1) {
             val message =
                 "Conflicting plugins found from: ${providers.joinToString { it.providerInfo.packageName }}"
-            AngApplication.application.toast(message)
+            TawRayApplication.application.toast(message)
             throw IllegalStateException(message)
         }
         val provider = providers.single().providerInfo
@@ -144,7 +144,7 @@ object PluginManager {
         }.build()
         try {
             return initNativeFast(
-                AngApplication.application.contentResolver,
+                TawRayApplication.application.contentResolver,
                 pluginId,
                 uri
             )?.let { InitResult(it) }
@@ -156,7 +156,7 @@ object PluginManager {
 
         try {
             return initNativeSlow(
-                AngApplication.application.contentResolver,
+                TawRayApplication.application.contentResolver,
                 pluginId,
                 uri
             )?.let { InitResult(it) }
@@ -188,7 +188,7 @@ object PluginManager {
         fun entryNotFound(): Nothing =
             throw IndexOutOfBoundsException("Plugin entry binary not found")
 
-        val pluginDir = File(AngApplication.application.noBackupFilesDir, "plugin")
+        val pluginDir = File(TawRayApplication.application.noBackupFilesDir, "plugin")
         (cr.query(
             uri,
             arrayOf(PluginContract.COLUMN_PATH, PluginContract.COLUMN_MODE),

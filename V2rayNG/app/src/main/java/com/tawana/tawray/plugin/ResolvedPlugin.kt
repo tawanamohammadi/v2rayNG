@@ -26,7 +26,7 @@ import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
 import android.graphics.drawable.Drawable
 import android.os.Build
-import com.tawana.tawray.AngApplication
+import com.tawana.tawray.TawRayApplication
 import com.tawana.tawray.plugin.PluginManager.loadString
 
 abstract class ResolvedPlugin(protected val resolveInfo: ResolveInfo) : Plugin() {
@@ -39,12 +39,12 @@ abstract class ResolvedPlugin(protected val resolveInfo: ResolveInfo) : Plugin()
     override val versionName: String by lazy {
         getPackageInfo(componentInfo.packageName).versionName!!
     }
-    override val label: CharSequence get() = resolveInfo.loadLabel(AngApplication.application.packageManager)
-    override val icon: Drawable get() = resolveInfo.loadIcon(AngApplication.application.packageManager)
+    override val label: CharSequence get() = resolveInfo.loadLabel(TawRayApplication.application.packageManager)
+    override val icon: Drawable get() = resolveInfo.loadIcon(TawRayApplication.application.packageManager)
     override val packageName: String get() = componentInfo.packageName
     override val directBootAware get() = Build.VERSION.SDK_INT < 24 || componentInfo.directBootAware
 
-    fun getPackageInfo(packageName: String) = AngApplication.application.packageManager.getPackageInfo(
+    fun getPackageInfo(packageName: String) = TawRayApplication.application.packageManager.getPackageInfo(
         packageName, if (Build.VERSION.SDK_INT >= 28) PackageManager.GET_SIGNING_CERTIFICATES
         else @Suppress("DEPRECATION") PackageManager.GET_SIGNATURES
     )!!

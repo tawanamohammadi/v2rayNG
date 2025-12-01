@@ -11,7 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.tawana.tawray.AngApplication
+import com.tawana.tawray.TawRayApplication
 import com.tawana.tawray.AppConfig
 import com.tawana.tawray.R
 import com.tawana.tawray.dto.ProfileItem
@@ -59,7 +59,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
      * Called when the ViewModel is cleared.
      */
     override fun onCleared() {
-        getApplication<AngApplication>().unregisterReceiver(mMsgReceiver)
+        getApplication<TawRayApplication>().unregisterReceiver(mMsgReceiver)
         tcpingTestScope.coroutineContext[Job]?.cancelChildren()
         SpeedtestManager.closeAllTcpSockets()
         Log.i(AppConfig.TAG, "Main ViewModel is cleared")
@@ -194,7 +194,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             }
 
         val ret = AngConfigManager.shareNonCustomConfigsToClipboard(
-            getApplication<AngApplication>(),
+            getApplication<TawRayApplication>(),
             serverListCopy
         )
         return ret
@@ -390,16 +390,16 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     fun createIntelligentSelectionAll() {
         viewModelScope.launch(Dispatchers.IO) {
             val key = AngConfigManager.createIntelligentSelection(
-                getApplication<AngApplication>(),
+                getApplication<TawRayApplication>(),
                 serversCache.map { it.guid }.toList(),
                 subscriptionId
             )
 
             launch(Dispatchers.Main) {
                 if (key.isNullOrEmpty()) {
-                    getApplication<AngApplication>().toastError(R.string.toast_failure)
+                    getApplication<TawRayApplication>().toastError(R.string.toast_failure)
                 } else {
-                    getApplication<AngApplication>().toastSuccess(R.string.toast_success)
+                    getApplication<TawRayApplication>().toastSuccess(R.string.toast_success)
                     MmkvManager.setSelectServer(key)
                     reloadServerList()
                 }
@@ -413,7 +413,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
      */
     fun initAssets(assets: AssetManager) {
         viewModelScope.launch(Dispatchers.Default) {
-            SettingsManager.initAssets(getApplication<AngApplication>(), assets)
+            SettingsManager.initAssets(getApplication<TawRayApplication>(), assets)
         }
     }
 
@@ -442,12 +442,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 }
 
                 AppConfig.MSG_STATE_START_SUCCESS -> {
-                    getApplication<AngApplication>().toastSuccess(R.string.toast_services_success)
+                    getApplication<TawRayApplication>().toastSuccess(R.string.toast_services_success)
                     isRunning.value = true
                 }
 
                 AppConfig.MSG_STATE_START_FAILURE -> {
-                    getApplication<AngApplication>().toastError(R.string.toast_services_failure)
+                    getApplication<TawRayApplication>().toastError(R.string.toast_services_failure)
                     isRunning.value = false
                 }
 

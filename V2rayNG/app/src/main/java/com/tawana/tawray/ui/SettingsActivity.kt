@@ -12,7 +12,7 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequest
 import androidx.work.multiprocess.RemoteWorkManager
-import com.tawana.tawray.AngApplication
+import com.tawana.tawray.TawRayApplication
 import com.tawana.tawray.AppConfig
 import com.tawana.tawray.AppConfig.VPN
 import com.tawana.tawray.R
@@ -325,7 +325,7 @@ class SettingsActivity : BaseActivity() {
         }
 
         private fun configureUpdateTask(interval: Long) {
-            val rw = RemoteWorkManager.getInstance(AngApplication.application)
+            val rw = RemoteWorkManager.getInstance(TawRayApplication.application)
             rw.cancelUniqueWork(AppConfig.SUBSCRIPTION_UPDATE_TASK_NAME)
             rw.enqueueUniquePeriodicWork(
                 AppConfig.SUBSCRIPTION_UPDATE_TASK_NAME,
@@ -343,7 +343,7 @@ class SettingsActivity : BaseActivity() {
         }
 
         private fun cancelUpdateTask() {
-            val rw = RemoteWorkManager.getInstance(AngApplication.application)
+            val rw = RemoteWorkManager.getInstance(TawRayApplication.application)
             rw.cancelUniqueWork(AppConfig.SUBSCRIPTION_UPDATE_TASK_NAME)
         }
 

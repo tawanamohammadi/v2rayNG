@@ -23,12 +23,12 @@ package com.tawana.tawray.plugin
 
 import android.content.Intent
 import android.content.pm.PackageManager
-import com.tawana.tawray.AngApplication
+import com.tawana.tawray.TawRayApplication
 
 class PluginList : ArrayList<Plugin>() {
     init {
         addAll(
-            AngApplication.application.packageManager.queryIntentContentProviders(
+            TawRayApplication.application.packageManager.queryIntentContentProviders(
                 Intent(PluginContract.ACTION_NATIVE_PLUGIN), PackageManager.GET_META_DATA
             )
                 .filter { it.providerInfo.exported }.map { NativePlugin(it) })

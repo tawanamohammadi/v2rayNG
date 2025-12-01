@@ -11,7 +11,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
-import com.tawana.tawray.AngApplication.Companion.application
+import com.tawana.tawray.TawRayApplication.Companion.application
 import com.tawana.tawray.AppConfig
 import com.tawana.tawray.R
 import com.tawana.tawray.databinding.ItemQrcodeBinding
