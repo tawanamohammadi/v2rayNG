@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPing">#009966</color>
-    <color name="colorPingRed">#FF0099</color>
-    <color name="colorConfigType">#f97910</color>
-
-    <color name="color_fab_active">#f97910</color>
-    <color name="color_fab_inactive">#9C9C9C</color>
-    <color name="color_secondary">#727272</color>
+    <!-- Brand Colors -->
+    <color name="colorPrimary">#6C63FF</color>
+    <color name="colorPrimaryDark">#5A52D5</color>
+    <color name="colorAccent">#00D9FF</color>
+    
+    <!-- Status Colors -->
+    <color name="colorPing">#00C853</color>
+    <color name="colorPingRed">#FF5252</color>
+    <color name="colorConfigType">#6C63FF</color>
+    
+    <!-- FAB Colors -->
+    <color name="color_fab_active">#00C853</color>
+    <color name="color_fab_inactive">#9E9E9E</color>
+    
+    <!-- UI Colors -->
+    <color name="color_secondary">#B0BEC5</color>
     <color name="divider_color_light">#E0E0E0</color>
-
-    <color name="colorPrimary">#F5F5F5</color>
-    <color name="colorAccent">#000000</color>
 </resources>
