@@ -1,32 +1,127 @@
-# v2rayNG
+````markdown
+# TawRay (TawRayNG)
 
-A V2Ray client for Android, support [Xray core](https://github.com/XTLS/Xray-core) and [v2fly core](https://github.com/v2fly/v2ray-core)
+**TawRay** is a personalized and enhanced Android client based on **v2rayNG**, built to provide a smoother, modern, and user-friendly V2Ray/Xray experience — with upcoming account features and a fresh UI identity.
 
-[![API](https://img.shields.io/badge/API-21%2B-yellow.svg?style=flat)](https://developer.android.com/about/versions/lollipop)
-[![Kotlin Version](https://img.shields.io/badge/Kotlin-2.2.0-blue.svg)](https://kotlinlang.org)
-[![GitHub commit activity](https://img.shields.io/github/commit-activity/m/2dust/v2rayNG)](https://github.com/2dust/v2rayNG/commits/master)
-[![CodeFactor](https://www.codefactor.io/repository/github/2dust/v2rayng/badge)](https://www.codefactor.io/repository/github/2dust/v2rayng)
-[![GitHub Releases](https://img.shields.io/github/downloads/2dust/v2rayNG/latest/total?logo=github)](https://github.com/2dust/v2rayNG/releases)
-[![Chat on Telegram](https://img.shields.io/badge/Chat%20on-Telegram-brightgreen.svg)](https://t.me/v2rayn)
+> Forked & customized from: **v2rayNG by 2dust**
 
-### Telegram Channel
-[github_2dust](https://t.me/github_2dust)
+---
 
-### Usage
+## ✨ Features
+- V2Ray/Xray client for Android
+- Supports:
+  - **Xray Core**
+  - **v2fly (V2Ray) Core**
+- Modern purple-blue theme (TawRay UI)
+- Refactored package & app identity:
+  - Package name: `com.tawana.tawray`
+  - App name: **TawRay**
+  - Application class: `TawRayApplication`
+- Future roadmap:
+  - User registration & account system
+  - Panel-based config management
+  - Optional cloud sync
 
-#### Geoip and Geosite
-- geoip.dat and geosite.dat files are in `Android/data/com.v2ray.ang/files/assets` (path may differ on some Android device)
-- download feature will get enhanced version in this [repo](https://github.com/Loyalsoldier/v2ray-rules-dat) (Note it need a working proxy)
-- latest official [domain list](https://github.com/Loyalsoldier/v2ray-rules-dat) and [ip list](https://github.com/Loyalsoldier/geoip) can be imported manually
-- possible to use third party dat file in the same folder, like [h2y](https://guide.v2fly.org/routing/sitedata.html#%E5%A4%96%E7%BD%AE%E7%9A%84%E5%9F%9F%E5%90%8D%E6%96%87%E4%BB%B6)
+---
 
-### More in our [wiki](https://github.com/2dust/v2rayNG/wiki)
+## 📱 Requirements
+- Android **5.0+ (API 21+)**
+- Kotlin-based project
 
-### Development guide
+---
 
-Android project under V2rayNG folder can be compiled directly in Android Studio, or using Gradle wrapper. But the v2ray core inside the aar is (probably) outdated.  
-The aar can be compiled from the Golang project [AndroidLibV2rayLite](https://github.com/2dust/AndroidLibV2rayLite) or [AndroidLibXrayLite](https://github.com/2dust/AndroidLibXrayLite).
-For a quick start, read guide for [Go Mobile](https://github.com/golang/go/wiki/Mobile) and [Makefiles for Go Developers](https://tutorialedge.net/golang/makefiles-for-go-developers/)
+## 📌 About the Author
+Developed and maintained by **Tawana Mohammadi (توانا محمدی)**  
+Independent AI researcher, data strategist, and educator focusing on **AI ethics, transparency, and human-centered design**.
 
-v2rayNG can run on Android Emulators. For WSA, VPN permission need to be granted via
-`appops set [package name] ACTIVATE_VPN allow`
+- 🌐 Website: **tawana.online**
+- ✉️ Contact: **info@tawana.online**
+- 🧑‍💻 GitHub: **@tawanamohammadi**
+- 🧠 ORCID: **0009-0005-6825-6728**
+- 🔍 Research Hub: **Tawana Network – Ethical AI & Data Transparency Research Hub**
+
+> Vision: *Ethics in intelligence, transparency in data.*
+
+---
+
+## 🚀 Usage
+
+### GeoIP & GeoSite
+- `geoip.dat` and `geosite.dat` are located in:  
+  `Android/data/com.tawana.tawray/files/assets`  
+  (path might differ depending on your Android device)
+- TawRay can download enhanced rule files from:  
+  **v2ray-rules-dat by Loyalsoldier**  
+  *(requires a working proxy to fetch)*
+- You can manually import:
+  - domain list: **v2ray-rules-dat**
+  - ip list: **geoip**
+- Third-party `.dat` files are supported if placed in the same assets folder.
+
+---
+
+## 📚 Wiki & Documentation
+Upstream v2rayNG wiki (still valid for TawRay core behavior):  
+- https://github.com/2dust/v2rayNG/wiki
+
+TawRay docs will be added here as features expand.
+
+---
+
+## 🛠️ Development Guide
+
+You can build TawRay with **Gradle Wrapper** (no Android Studio required):
+
+```bash
+./gradlew assembleDebug
+````
+
+APK output:
+
+```
+app/build/outputs/apk/debug/app-debug.apk
+```
+
+### About Core AAR
+
+The embedded core AAR may be outdated upstream.
+You can rebuild core from:
+
+* [https://github.com/2dust/AndroidLibV2rayLite](https://github.com/2dust/AndroidLibV2rayLite)
+* [https://github.com/2dust/AndroidLibXrayLite](https://github.com/2dust/AndroidLibXrayLite)
+
+Recommended reading:
+
+* [https://github.com/golang/go/wiki/Mobile](https://github.com/golang/go/wiki/Mobile)
+* [https://tutorialedge.net/golang/makefiles-for-go-developers/](https://tutorialedge.net/golang/makefiles-for-go-developers/)
+
+---
+
+## 🧪 Emulator / WSA Notes
+
+TawRay works on Android emulators.
+For WSA (Windows Subsystem for Android), grant VPN permission via:
+
+```bash
+appops set com.tawana.tawray ACTIVATE_VPN allow
+```
+
+---
+
+## 🙏 Credits
+
+This project is based on the great work of:
+
+* **v2rayNG** by 2dust
+* Xray core team
+* v2fly core team
+
+---
+
+## 📜 License
+
+Same license as upstream v2rayNG.
+See `LICENSE` for details.
+
+```
+```
