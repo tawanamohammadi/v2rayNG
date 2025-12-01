@@ -1,6 +1,6 @@
-package com.v2ray.ang
+package com.tawana.tawray
 
-import com.v2ray.ang.util.HttpUtil
+import com.tawana.tawray.util.HttpUtil
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
